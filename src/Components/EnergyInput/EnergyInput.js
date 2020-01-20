@@ -20,6 +20,7 @@ const EnergyInput = (props) => {
             <EnergyInputType energySourceData={productionData}/>   
         </div>
     )
+
 }
 
 
