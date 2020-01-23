@@ -32,6 +32,9 @@ const EnergyInputKPI = (props) => {
         verticalAlign: "middle"
 
     }
+    let valoare = props.valoare.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+    let cantitate = props.cantitate.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+    let costMediu = props.costMediu.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
 
     return (
         <div style={tileStyles}>
@@ -43,17 +46,17 @@ const EnergyInputKPI = (props) => {
                 <tbody style={{verticalAlign: "bottom"}}>
                     <tr>
                         <td style={{width: "60%"}}>Valoare</td>
-                        <td style={{textAlign: "right"}}>{props.valoare}</td>
+                        <td style={{textAlign: "right", width: "25%"}}>{valoare}</td>
                         <td style={{fontSize: "10px"}}>RON</td>
                     </tr>
                     <tr>
                         <td>Cantitate</td>
-                        <td style={{textAlign: "right"}}>{props.cantitate}</td>
+                        <td style={{textAlign: "right"}}>{cantitate}</td>
                         <td style={{fontSize: "10px"}}>MWh</td>
                     </tr>
                     <tr>
                         <td>Cost mediu</td>
-                        <td style={{textAlign: "right"}}>262.00</td>
+                        <td style={{textAlign: "right"}}>{costMediu}</td>
                         <td style={{fontSize: "10px"}}>RON/MWh</td>
                     </tr>  
                 </tbody>

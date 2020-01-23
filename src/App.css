@@ -19,3 +19,8 @@
   --tile-font-color: white;
 
 }
+
+table, tr {
+  width: 100%;
+}
+

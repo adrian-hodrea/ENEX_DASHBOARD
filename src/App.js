@@ -2,10 +2,10 @@ import React from 'react';
 import EnergyInput from './Components/EnergyInput/EnergyInput.js'
 import './App.css';
 
-function App() {
+function App(props) {
   return (
     <div className="App">
-      <EnergyInput />
+      <EnergyInput globalData={props.globalData}/>
     </div>
   );
 }

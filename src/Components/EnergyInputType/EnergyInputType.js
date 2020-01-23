@@ -22,6 +22,7 @@ const EnergyInputType = (props) => {
             title={kpi.title} 
             cantitate={kpi.cantitate}
             valoare={kpi.valoare}
+            costMediu={kpi.costMediu}
             bgColor={kpi.backgroundColor}
             icon={kpi.icon}
             displayType={kpi.displayType}

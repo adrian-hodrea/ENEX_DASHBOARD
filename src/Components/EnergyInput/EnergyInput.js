@@ -1,8 +1,5 @@
 import React from 'react';
 import EnergyInputType from '../EnergyInputType/EnergyInputType.js';
-import pieteData from '../data/pieteData.js';
-import productionData from '../data/productionData.js';
-
 
 const EnergyInput = (props) => {
     let energyInputStyles = {
@@ -14,10 +11,14 @@ const EnergyInput = (props) => {
         backgroundColor: "#2673fb"
     }
 
+    const energyInputTypeComponents = props.globalData.map(
+        piata => {
+           return <EnergyInputType energySourceData={piata}/> 
+        })
+
     return (
         <div style={energyInputStyles}>
-            <EnergyInputType energySourceData={pieteData}/> 
-            <EnergyInputType energySourceData={productionData}/>   
+            {energyInputTypeComponents}
         </div>
     )
 
