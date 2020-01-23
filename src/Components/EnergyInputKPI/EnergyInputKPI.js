@@ -1,16 +1,9 @@
 import React from 'react';
 
 const EnergyInputKPI = (props) => {
-    let opacityValue;
-    switch (props.displayType) {
-        case "B" :  // Full Opacity
-            opacityValue = "0.2";
-            break;
-        case "H" : // Blured Opacity
-            opacityValue = "0";
-            break;
-        default: // Hidden Opacity
-            opacityValue = "1";
+    let opacityValue = "1";
+    if (props.cantitate === 0) {
+        opacityValue = "0.2";
     }
     let tileStyles = {
         //display: "inline-block",

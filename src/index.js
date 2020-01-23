@@ -114,19 +114,28 @@ pieteDataTotals.kpis = pieteComponents[0].kpis.map( k => {
 })
 
 pieteDataTotals.kpis.forEach( kpiTotal => {
+    if (kpiTotal.title.startsWith('Total')) {
+        kpiTotal.title = 'Total GENERAL';
+    }
     pieteComponents.forEach( (comp,index) => {
         if (index > 0) {
             comp.kpis.forEach(kpiTip => {
-                if (kpiTotal.title === kpiTip.title) {
-                    console.log("kpiTotal.cantitate + kpiTip.cantitate: ", kpiTotal.cantitate + kpiTip.cantitate); 
-                    kpiTotal.cantitate = kpiTotal.cantitate + kpiTip.cantitate;
-                    kpiTotal.valoare = kpiTotal.valoare + kpiTip.valoare; 
-                    console.log("kpiTotal.cantitate: ", kpiTotal.cantitate); 
-                    console.log("kpiTip.cantitate: ", kpiTip.cantitate); 
+                if (kpiTotal.title.startsWith('Total')) { 
+                    if (kpiTip.title.startsWith('Total')) {
+                        kpiTotal.cantitate = kpiTotal.cantitate + kpiTip.cantitate;
+                        kpiTotal.valoare = kpiTotal.valoare + kpiTip.valoare; 
+                    }
+                } else {
+                    if (kpiTotal.title === kpiTip.title) {
+                        kpiTotal.cantitate = kpiTotal.cantitate + kpiTip.cantitate;
+                        kpiTotal.valoare = kpiTotal.valoare + kpiTip.valoare; 
+                    }
                 }
             })
         }
     })
+    
+    kpiTotal.costMediu = kpiTotal.valoare / kpiTotal.cantitate;
 }
 )
 
