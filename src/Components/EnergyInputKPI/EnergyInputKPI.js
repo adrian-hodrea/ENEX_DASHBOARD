@@ -2,19 +2,12 @@ import React from 'react';
 
 const EnergyInputKPI = (props) => {
     let opacityValue = "1";
-    if (props.cantitate === 0) {
+    if (props.valoare === 0) {
         opacityValue = "0.2";
     }
     let tileStyles = {
-        //display: "inline-block",
-        margin: "4px",
-        borderRadius: "5px",
-        width: "330px",
-        backgroundImage: `linear-gradient(to top right, ${props.bgColor})`,
-        color: "var(--tile-font-color)",
-        padding: "10px",
-        fontSize: "14px",
-        opacity: opacityValue
+        backgroundImage: `linear-gradient(to right, ${props.bgColor})`,
+        opacity: opacityValue,
     }
     
     let titleStyles = {
@@ -30,7 +23,7 @@ const EnergyInputKPI = (props) => {
     let costMediu = props.costMediu.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
 
     return (
-        <div style={tileStyles}>
+        <div className={props.className} style={tileStyles}>
             <div style={titleStyles}>
                 <div style={{display: "inline-block", width:"85%"}}>{props.title}</div>
                 <i style={{float: "right"}} className={props.icon}></i>

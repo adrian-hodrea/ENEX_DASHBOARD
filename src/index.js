@@ -9,6 +9,7 @@ const host = "http://192.168.0.4:3000";
 const apiTreni = host + '/api/treni';
 const apiPiete = host + '/api/piete';
 const apiTipTranzactii = host + '/api/tip_tranzactii';
+const apiChIndir = host + '/api/ch_indir';
 
 (async function() {
     const parseBody = data => {
@@ -39,10 +40,21 @@ const apiTipTranzactii = host + '/api/tip_tranzactii';
         }
         })
     const tipuriTranzactii = await parseBody(responseObject);
-    /* Merg mai departe cu costructia paginii */
+    /* Aduc cheltuielile indirecte */
+    responseObject = await fetch(apiChIndir,
+        {method: "GET",
+        headers: {
+            "Content-Type": "application/json"
+        }
+        })
+    const chIndir = await parseBody(responseObject);
+
+    /* Merg mai departe cu constructia paginii */
     const pieteComponents = prepareDataForEnergyInputComponent(treniData,piete,tipuriTranzactii); 
 
-    ReactDOM.render(<App globalData={pieteComponents} />, document.getElementById('root'));
+    ReactDOM.render(<App energyData={pieteComponents} indirData={chIndir} />, document.getElementById('root'));
+
+    
 })();
 
 const prepareDataForEnergyInputComponent = (bodyData,piete,tipuriTranzactii) => {
@@ -64,12 +76,13 @@ const prepareDataForEnergyInputComponent = (bodyData,piete,tipuriTranzactii) => 
         kpiDisplayData.forEach(kpiDD => {
             if (kpiDD.id === 999) {
                 kpisTotal.icon = kpiDD.icon;
-                kpisTotal.backgroundColor = kpiDD.backgroundColor;
+                kpisTotal.backgroundColor = `var(${kpiDD.backgroundColorFrom}),  var(${kpiDD.backgroundColorTo})`;
             }
         })
 
         tipuriTranzactii.forEach( tipTr => {
             let kpi = {
+                id: tipTr.tip_tranzactie_id,
                 title: `Cantitati ${tipTr.adi_tiptr_des}`,
                 cantitate: 0,
                 valoare: 0,
@@ -93,7 +106,7 @@ const prepareDataForEnergyInputComponent = (bodyData,piete,tipuriTranzactii) => 
             kpiDisplayData.forEach(kpiDD => {
                 if (kpiDD.id === tipTr.tip_tranzactie_id) {
                     kpi.icon = kpiDD.icon;
-                    kpi.backgroundColor = kpiDD.backgroundColor;
+                    kpi.backgroundColor = `var(${kpiDD.backgroundColorFrom}),  var(${kpiDD.backgroundColorTo})`;
                 }
             })
 
@@ -115,7 +128,7 @@ pieteDataTotals.kpis = pieteComponents[0].kpis.map( k => {
 
 pieteDataTotals.kpis.forEach( kpiTotal => {
     if (kpiTotal.title.startsWith('Total')) {
-        kpiTotal.title = 'Total GENERAL';
+        kpiTotal.title = 'Total INTRARI';
     }
     pieteComponents.forEach( (comp,index) => {
         if (index > 0) {
