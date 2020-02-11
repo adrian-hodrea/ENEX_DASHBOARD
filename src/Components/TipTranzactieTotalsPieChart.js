@@ -3,8 +3,6 @@ import {
   PieChart, Pie, Cell, Tooltip, Legend, Label, LabelList
 } from 'recharts';
 
-// const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
-
 const RADIAN = Math.PI / 180;
 const renderCustomizedLabelOuter = ({
   cx, cy, midAngle, innerRadius, outerRadius, percent, index,
@@ -35,7 +33,7 @@ const renderCustomizedLabelInner = ({
 };
 
 
-export default class Example extends PureComponent {
+export default class TipTranzactieTotalsPieChart extends PureComponent {
   static jsfiddleUrl = 'https://jsfiddle.net/alidingling/c9pL8k61/';
 
   render() {
@@ -44,17 +42,33 @@ export default class Example extends PureComponent {
     })
 
     return (
-      <PieChart width={400} height={400}>
-        <Tooltip 
-          itemStyle={{opacity: 1, fontWeight: 700}}
-          contentStyle={{background: "rgba(255,255,255, 0.5)"}}
+      <PieChart width={300} height={280}>
+        <Tooltip
+          itemStyle={{ opacity: 1, fontWeight: 700 }}
+          contentStyle={{ background: "rgba(255,255,255, 0.5)" }}
           formatter={(value, name, props) => {
-            let formatedValue = value.toLocaleString(undefined, 
-              {minimumFractionDigits: 2, maximumFractionDigits: 2});
-             return formatedValue;
+            let formatedValue = value.toLocaleString(undefined,
+              { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            return formatedValue;
           }
-        }
+          }
+        />
+        <Legend 
+          verticalAlign="bottom" 
+          height={20} 
+          payload={[
+            {
+              value: "Inner Chart - MWh",
+              type: "circle",
+              id: 'ID01'
+            },
+            {
+              value: "Outer Chart - RON",
+              type: "circle",
+              id: 'ID0'
+            }
 
+        ]}
         />
         <Pie
           paddingAngle={1}
@@ -63,7 +77,7 @@ export default class Example extends PureComponent {
           cy="50%"
           labelLine={false}
           label={renderCustomizedLabelInner}
-          outerRadius={100}
+          outerRadius={80}
           fill="#8884d8"
           dataKey="cantitate"
         >
@@ -78,8 +92,8 @@ export default class Example extends PureComponent {
           cy="50%"
           labelLine={false}
           label={renderCustomizedLabelOuter}
-          innerRadius={120}
-          outerRadius={160}
+          innerRadius={90}
+          outerRadius={120}
           fill="#82ca9d"
           dataKey="valoare"
         >
@@ -88,7 +102,6 @@ export default class Example extends PureComponent {
           }
         </Pie>
 
-        <Tooltip />
       </PieChart>
     );
   }

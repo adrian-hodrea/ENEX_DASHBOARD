@@ -12,9 +12,9 @@ const EnergyInputKPI = (props) => {
     
     let titleStyles = {
         borderBottom: "1px solid var(--tile-font-color)",
-        paddingBottom: "5px",
+        paddingBottom: "4px",
         fontWeight: "500",
-        fontSize: "18px",
+        fontSize: "14px",
         verticalAlign: "middle"
 
     }

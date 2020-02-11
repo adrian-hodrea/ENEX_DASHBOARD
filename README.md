@@ -1,3 +1,8 @@
+sintaxa pentru a afla data in format integer din Pri ORACLE:
+
+SELECT 0+CURDATE, TRANS FROM TRANSORDER WHERE CURDATE = 31/12/19 FORMAT;
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
