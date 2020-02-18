@@ -1,0 +1,39 @@
+import React, { PureComponent } from 'react';
+import {
+  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer
+} from 'recharts';
+
+export default class CostTotalStackedBarChart extends PureComponent {
+  static jsfiddleUrl = 'https://jsfiddle.net/alidingling/90v76x08/';
+
+  render() {
+    return (
+      <ResponsiveContainer width="100%" minHeight={280}>
+        <BarChart className="barChart"
+          data={this.props.data}
+          margin={{
+            top: 20, right: 0, left: 2, bottom: 5,
+          }}
+        >
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="name">
+          </XAxis>
+          <YAxis />
+          <Tooltip
+            itemStyle={{ opacity: 1, fontWeight: 700, color: "black" }}
+            contentStyle={{ background: "rgba(255,255,255, 0.5)" }}
+            formatter={(value, name, props) => {
+              let formatedValue = value.toLocaleString(undefined,
+                { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + " RON";
+              return formatedValue;
+            }
+            }
+          />
+          <Legend />
+          <Bar dataKey="Cost_Intrari" stackId="a" fill="#8884d8" />
+          <Bar dataKey="Cost_Fix" stackId="a" fill="#82ca9d" />
+        </BarChart>
+      </ResponsiveContainer>
+    );
+  }
+}

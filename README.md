@@ -1,7 +1,16 @@
-sintaxa pentru a afla data in format integer din Pri ORACLE:
+##  Script pentru a construi obiectul datesData care face mapare intre formatul de data in Browser si cel din baza de date ORACLE PRI
 
-SELECT 0+CURDATE, TRANS FROM TRANSORDER WHERE CURDATE = 31/12/19 FORMAT;
+:DATA = 15/12/19;
 
+SELECT DTOA(BEGINOFMONTH(:DATA),'YYYY-MM-DD') INTO :KEY_BEGIN FROM DUMMY FORMAT;
+SELECT 0 + BEGINOFMONTH(:DATA) INTO :VALUE_BEGIN FROM DUMMY FORMAT;
+SELECT STRCAT('"', :KEY_BEGIN , '": ', ITOA(:VALUE_BEGIN), ',') FROM DUMMY FORMAT;
+
+SELECT DTOA(ENDOFMONTH(:DATA),'YYYY-MM-DD') INTO :KEY_BEGIN FROM DUMMY FORMAT;
+SELECT 0 + ENDOFMONTH(:DATA) INTO :VALUE_BEGIN FROM DUMMY FORMAT;
+SELECT STRCAT('"', :KEY_BEGIN , '": ', ITOA(:VALUE_BEGIN), ',') FROM DUMMY FORMAT;
+
+## ## ## ## ## ## ## 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
