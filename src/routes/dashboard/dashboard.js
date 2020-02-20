@@ -22,10 +22,10 @@ class App extends Component {
   fetchData() {
     let { fromDatePri, toDatePri } = this.props.location.data;
     const host = "http://192.168.0.4:3000";
-    const apiTreni = host + '/api/treni';
-    const apiPiete = host + '/api/piete';
-    const apiTipTranzactii = host + '/api/tip_tranzactii';
-    const apiChIndir = host + '/api/ch_indir';
+    const apiTreni = host + '/treni';
+    const apiPiete = host + '/piete';
+    const apiTipTranzactii = host + '/tip_tranzactii';
+    const apiChIndir = host + '/ch_indir';
     let self = this;
     (async function () {
 

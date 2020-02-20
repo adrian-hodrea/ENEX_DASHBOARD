@@ -43,9 +43,9 @@ const EnergyInputData = (props) => {
                     </div>
                     <EnergyInputKPI className="energy__input__kpi ch__indir"
                         title="Costuri FIXE(ADM)"
-                        cantitate="0"
+                        cantitate={intrariTotaleKPI.cantitate}
                         valoare={chIndir}
-                        costMediu="0"
+                        costMediu={chIndir / intrariTotaleKPI.cantitate}
                         bgColor="var(--ch-indir-color-from), var(--ch-indir-color-to)"
                         icon="fas fa-stamp"
                     />
